@@ -12,7 +12,7 @@ app.get('/scrape', function(req, res){
 
   request(url, function(error, statusCode, html){
 
-    if (!error){
+    if (!error) {
       // use cheerio on the returned html
       var $ = cheerio.load(html);
       // define variables to be used 
@@ -22,7 +22,32 @@ app.get('/scrape', function(req, res){
         release: "",
         rating : ""
       };
+
+      // choose a unique element as a starting point
+      $('.header').filter(function(){
+        // store the data into a variable to easily see what's going on
+        var data = $(this);
+
+        // In examining the DOM we notice that the title rests within the first child element of the header tag. 
+        json.title = data.children().first().text();
+        // We see release date is located within the last element.
+        json.release = data.children().last().children().text();
+
+      });
+
+    // movie rating is inside a different DOM element
+      $('.star-box-giga-star').filter(function(){
+        var data = $(this);
+        json.rating = data.text();
+      });
     }
+
+    fs.writeFile('output.json', JSON.stringify(json, null, 4), function(err){
+        console.log('File successfully written - Check project directory for output.json');
+    });
+
+    res.send('Check your console!');  // reminder: no UI
+
   });
 });
 
