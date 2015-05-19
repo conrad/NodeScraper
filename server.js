@@ -46,6 +46,10 @@ app.get('/scrape', function(req, res){
         console.log('File successfully written - Check project directory for output.json');
     });
 
+    fs.writeFile('allHTML.json', html, function(err){
+      console.log('allHTML file successfully written');
+    })
+
     res.send('Check your console!');  // reminder: no UI
 
   });
