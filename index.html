@@ -2,24 +2,27 @@
 <head>
   <meta charset="UTF-8">
   <title>Web Scraper</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <h1>Homemade Web Scraper</h1>
     
   <form action="/input-data" method="post">
-    <div>
-      <label for="url">URL to Scrape:</label>
+    <div class="input-block">
+      <label for="url">URL:</label>
       <input type="text" id="url" placeholder="URL to scrape..." />
     </div>
-    <div>
+    <div class="input-block">
       <label for="tags">Target:</label>
       <input type="text" id="tags" placeholder="Tags to search for..." />
     </div>
-    <div>
+    <div class="input-block">
       <label for="file">File:</label>
-      <input type="text" placeholder="Output filename...">
+      <input type="text" id="file" placeholder="Output filename...">
     </div>
-    <button type="submit">Scrape</button>
+    <div class="button-block">
+      <button type="submit">Scrape</button>
+    </div>
   </form>
 
 
