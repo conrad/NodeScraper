@@ -12,6 +12,11 @@ app.use(express.static(__dirname + '/public'))
 //   app.serve(static(_dirname + '/', index.html));
 // });
 
+app.post('/scrappy', function(req, res){
+  console.log('req.url:', req.url);
+  console.log('request object:', req);
+});
+
 app.get('/scrape', function(req, res){
 
   url = 'http://www.imdb.com/title/tt1229340/';
