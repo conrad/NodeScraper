@@ -6,9 +6,11 @@ var cheerio = require('cheerio');
 
 var app = express();
 
-app.get('/', function(req, res){
-  app.serve(static(_dirname + '/', index.html));
-});
+app.use(express.static(__dirname + '/public'))
+
+// app.get('/', function(req, res){
+//   app.serve(static(_dirname + '/', index.html));
+// });
 
 app.get('/scrape', function(req, res){
 
@@ -46,7 +48,7 @@ app.get('/scrape', function(req, res){
       });
     }
 
-    fs.writeFile('jake.json', JSON.stringify(json, null, 4), function(err){
+    fs.writeFile('data/output.json', JSON.stringify(json, null, 4), function(err){
         console.log('File successfully written - Check project directory for output.json');
     });
 
